@@ -137,7 +137,7 @@ ReactDOM.render(<App />, root);
 
 ## Workshop Part 1
 
-Time to create some components! Open up `index.1.html` in your editor. You should see the components we created above.
+Time to create some components! Open up `index.2.html` in your editor. You should see the components we created above.
 
 Create a new component called `Card`. It should take 3 props: `title`, `image` and `children`, that render into an `h2`, an `img` and a `p` respectively.
 
