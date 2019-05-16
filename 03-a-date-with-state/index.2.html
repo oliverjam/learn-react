@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <title>03 A date with state | FAC React</title>
+
+  <body>
+    <!-- These scripts will make React and ReactDOM globally available. -->
+    <script src="./../assets/react@16.8.6/umd/react.development.js"></script>
+    <script src="./../assets/react-dom@16.8.6/umd/react-dom.development.js"></script>
+    <!-- This will let us write JSX and ES6 in a script tag with a special type of "text/babel" -->
+    <script src="./../assets/babel-standalone@6.26.0/babel.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+      const Counter = props => {
+        const [count, setCount] = React.useState(0);
+        return (
+          <button onClick={() => setCount(count + 1)}>Count is {count}</button>
+        );
+      };
+
+      const App = () => <Counter />;
+
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
