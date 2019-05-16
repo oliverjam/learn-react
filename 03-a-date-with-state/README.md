@@ -4,7 +4,7 @@
 
 We've seen how to create static templates for rendering HTML, but how do we get anything to change on the page? How do we respond to user events?
 
-We need "state". This is a JavaScript representation of the state your UI is in. Whether a button has been clicked, the JSON you got back from an API or a search term a user has typed in.
+We need "state". This is a JavaScript representation of the state your UI is in. E.g. whether a button has been clicked, the JSON you got back from an API, a search term a user has typed in etc.
 
 By rendering our UI based on this state we can tell React how the page should look for any given state and let it worry about keeping the DOM in sync.
 
@@ -21,6 +21,8 @@ const Counter = props => {
 
 We want to be able to change the `count` variable and have the component re-render to match the new value. React provides a way to make this value "stateful": `React.useState()`.
 
+`useState()` takes the initial state value as an argument, and returns an array with two properties: the state value and a function that lets you update the state value.
+
 ```jsx
 const Counter = props => {
   const countState = React.useState(0);
@@ -30,7 +32,7 @@ const Counter = props => {
 };
 ```
 
-`useState()` takes the initial state value as an argument, and returns an array with two properties: the state value and a function that lets you update the state value. It's common to use array destructuring to simplify this:
+It's common to use array destructuring to simplify this:
 
 ```jsx
 const Counter = props => {
@@ -54,7 +56,7 @@ const Counter = props => {
 };
 ```
 
-You can pass event listeners in JSX like an other property. They are always formatted like "on" then the camelCased event name. So "onClick", "onKeyDown", "onChange" etc.
+You can pass event listeners in JSX like any other property. They are always formatted as "on" followed by the camelCased event name. So "onClick", "onKeyDown", "onChange" etc.
 
 In this example we are passing a function that calls `setCount` with our new value of `count`.
 
