@@ -26,7 +26,7 @@ It's like making your own custom HTML tags.
 
 ## Dynamic components
 
-Our `Title` component is still not very useful: its className and children are both hard-coded. We want a re-usable and composable component (like an HTML element):
+Our `Title` component is still not very useful: its className and children are both hard-coded. We want a re-usable and composable component (like an HTML element). Ideally we can use it like this:
 
 ```jsx
 const Page = () => (
@@ -74,7 +74,7 @@ You can put any valid JS _expression_ inside the curly brackets. An expression m
 
 You may be wondering how we get these React components to actually show up on the page.
 
-React consists of two libraries—the main `React` library and a specific `ReactDOM` library for rendering to the DOM (since React can also render to e.g. VR or Native).
+React consists of two libraries—the main `React` library and a specific `ReactDOM` library for rendering to the DOM (since React can also be used to create VR or Native mobile apps).
 
 We use the `ReactDOM.render()` function to put our app in the DOM. It takes an element as the first argument and a DOM node as the second.
 
@@ -137,7 +137,7 @@ ReactDOM.render(<App />, root);
 
 ## Workshop Part 1
 
-Time to create some components! Open up `index.2.html` in your editor. You should see the components we created above.
+Time to create some components! Open up `index.1.html` in your editor. You should see the components we created above.
 
 Create a new component called `Card`. It should take 3 props: `title`, `image` and `children`, that render into an `h2`, an `img` and a `p` respectively.
 
