@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <title>03 A date with state | FAC React</title>
+
+  <body>
+    <!-- These scripts will make React and ReactDOM globally available. -->
+    <script src="./../assets/react@16.8.6/umd/react.development.js"></script>
+    <script src="./../assets/react-dom@16.8.6/umd/react-dom.development.js"></script>
+    <!-- This will let us write JSX and ES6 in a script tag with a special type of "text/babel" -->
+    <script src="./../assets/babel-standalone@6.26.0/babel.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+      const Toggle = props => {
+        const [toggled, setToggled] = React.useState(false);
+        return (
+          <div>
+            <button onClick={() => setToggled(!toggled)}>Toggle</button>
+            {toggled && <div>{props.children}</div>}
+          </div>
+        );
+      };
+
+      const App = () => <Toggle>Toggle me!</Toggle>;
+
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
