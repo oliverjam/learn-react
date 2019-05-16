@@ -1,4 +1,4 @@
-## Side effects
+# Side effects
 
 React is designed to make it easy to keep the state of your application in sync with your UI. We've seen how JSX and props/state help keep what you're rendering up-to-date, but what about side-effects?
 
