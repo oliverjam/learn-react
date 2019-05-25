@@ -5,5 +5,5 @@ workflow "Prose lint" {
 
 action "node" {
   uses = "docker://node:10"
-  runs = "npx alex"
+  runs = "npx alex **/*.md"
 }
