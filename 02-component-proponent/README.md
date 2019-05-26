@@ -92,7 +92,8 @@ ReactDOM.render(<App />, rootNode);
 
 Since your React app is like a tree of objects you only call `ReactDOM.render()` **once**. You give it the very top-level component of your app and it will move down the tree rendering all the children recursively.
 
-### A bit more detail
+<details>
+<summary>A bit more detail</summary>
 
 The component functions return React elements, which are objects describing an element, its properties, and its children. These objects form a tree, with a top-level element that renders child elements, that in turn have their own children. A small app might produce a tree like this:
 
@@ -135,10 +136,14 @@ ReactDOM.render(<App />, root);
 // </div>
 ```
 
+</details>
+
 ## Workshop Part 1
 
 Time to create some components! Open up `index.1.html` in your editor. You should see the components we created above.
 
-Create a new component called `Card`. It should take 3 props: `title`, `image` and `children`, that render into an `h2`, an `img` and a `p` respectively.
+Create a new component called `Card`. It should take 3 props: `title`, `image` and `children`, that render into `h2`, `img` and `p` elements respectively.
 
 Replace the `<p>` in the `App` component with a `<Card />`. Here's an image URL you can use: `https://source.unsplash.com/400x300/?burger`
+
+[Next section](/03-a-date-with-state)
