@@ -52,11 +52,12 @@ We have a function that will let us update the state, but how do we attach event
 ```jsx
 const Counter = props => {
   const [count, setCount] = React.useState(0);
-  return <button onClick={() => setCount(count + 1)}>Count is {count}</button>;
+  const handleClick = () => setCount(count + 1);
+  return <button onClick={handleClick}>Count is {count}</button>;
 };
 ```
 
-You can pass event listeners in JSX like any other property. They are always formatted as "on" followed by the camelCased event name. So "onClick", "onKeyDown", "onChange" etc.
+You can pass event listener functions in JSX like any other property. They are always formatted as "on" followed by the camelCased event name. So "onClick", "onKeyDown", "onChange" etc.
 
 In this example we are passing a function that calls `setCount` with our new value of `count`.
 
@@ -75,3 +76,5 @@ const App = () => <Toggle>Toggle me!</Toggle>;
 ```
 
 ![toggle-example](https://user-images.githubusercontent.com/9408641/57849940-98b0b380-77d4-11e9-86ef-315861f60489.gif)
+
+[Next section](/04-perfect-effects)
