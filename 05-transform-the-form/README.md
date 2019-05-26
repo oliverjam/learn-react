@@ -133,9 +133,9 @@ const Form = () => {
 
 ## Workshop Part 4
 
-We're going to build a form that converts temperature. Create a component called `TempConverter` that renders a form.
+We're going to build a form that converts temperature. Open up `index.4.html`; you should see a component called `TempConverter` that renders a form. Edit this component to add the required inputs.
 
-It should have radio buttons to pick either celsius or fahrenheit scale, and a number input to enter the temperature to be converted. Don't forget that inputs need labels!
+It should have radio buttons to pick either celsius or fahrenheit scale, and a number input to enter the temperature to be converted. Don't forget that inputs need labels! It should also show the converted temperature inside the `output` tag.
 
    <details>
    <summary>
