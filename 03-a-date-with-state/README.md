@@ -45,6 +45,12 @@ The updater function (`setCount`) takes a new state value as its argument. E.g. 
 
 Whenever the updater function is called the component will re-render with the new value of the state. This will keep your UI in sync with the state.
 
+### Updates based on previous state
+
+Sometimes you need access to the old value of the state in order to update. The state updater functions also accept a _function_ as an argument. React will call this function with the old state value, and whatever you return from it will be set as the new state.
+
+E.g. instead of `setCount(10)` we could do `setCount(oldCount => oldCount + 1)` to update the count by one. You'll see an example of when this is necessary in the next section.
+
 ## Event listeners
 
 We have a function that will let us update the state, but how do we attach event listeners to our DOM nodes?
