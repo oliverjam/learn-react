@@ -142,7 +142,7 @@ It should have radio buttons to pick either celsius or fahrenheit scale, and a n
    Hint (you can click me)
    </summary>
 
-Here are helper functios to do the temperature conversion:
+Here are helper functions to do the temperature conversion:
 
 ```js
 const celsiusToFahrenheit = c => Math.round((c * 9) / 5 + 32);
