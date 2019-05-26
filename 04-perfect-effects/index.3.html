@@ -15,19 +15,17 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      const Counter = props => {
-        const [count, setCount] = React.useState(0);
-
-        React.useEffect(() => {
-          document.title = `Count: ${count}`;
-        });
-
+      const Toggle = props => {
+        const [toggled, setToggled] = React.useState(false);
         return (
-          <button onClick={() => setCount(count + 1)}>Count is {count}</button>
+          <div>
+            <button onClick={() => setToggled(!toggled)}>Toggle</button>
+            {toggled && <div>{props.children}</div>}
+          </div>
         );
       };
 
-      const App = () => <Counter />;
+      const App = () => <Toggle>Toggle me!</Toggle>;
 
       ReactDOM.render(<App />, root);
     </script>

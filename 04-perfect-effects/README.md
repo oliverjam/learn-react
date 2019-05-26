@@ -106,4 +106,29 @@ The arrow function we return will be called if the component unmounts (is remove
 
 ## Workshop Part 3
 
-TBC
+We're going to enhance our `Toggle` component from Part 3. You can either keep working in the same file or open up `index.3.html` to start fresh.
+
+Edit the Toggle component so that the page title (in the tab) shows whether the toggle is on or off.
+
+Then create a new component called `MousePosition`. It should keep track of where the mouse is in the window and render the mouse x and y positions.
+
+<details>
+<summary>
+Hint
+</summary>
+
+You probably want to look at the [mousemove](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event) event. Here are [all the properties available on mouse events](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent#Properties).
+
+</details>
+
+Put `MouseMove` inside your `Toggle` so you can show and hide it. This is how your final `App` should look:
+
+```jsx
+const App = () => (
+  <Toggle>
+    <MousePosition />
+  </Toggle>
+);
+```
+
+![effect-example](https://user-images.githubusercontent.com/9408641/58380308-758dbd00-7fa7-11e9-8e93-cdc945530d55.gif)
