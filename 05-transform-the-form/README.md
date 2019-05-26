@@ -31,7 +31,7 @@ However we still have no way to update the value—if the user types into the in
 
 ### `onChange`
 
-To control an input you also need an `onChange` event handler. This will update the state (and therefore the input's `value`) whenever the value of the input changes (i.e. when the user types into it).
+To control an input you also need an `onChange` event handler. This will update the state (and therefore the input's `value`) whenever the user types.
 
 ```jsx
 const Form = () => {
@@ -78,7 +78,7 @@ const Form = () => {
 };
 ```
 
-An `option` is selected when its `value` matches the `value` of the parent select.
+The value of the `select` controls which `option` is highlighted.
 
 ### Checkboxes and radios
 
