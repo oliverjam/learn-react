@@ -132,3 +132,23 @@ const Form = () => {
 ```
 
 ## Workshop Part 4
+
+We're going to build a form that converts temperature. Create a component called `TempConverter` that renders a form.
+
+It should have radio buttons to pick either celsius or fahrenheit scale, and a number input to enter the temperature to be converted. Don't forget that inputs need labels!
+
+   <details>
+   <summary>
+   Hint (you can click me)
+   </summary>
+
+Here are helper functios to do the temperature conversion:
+
+```js
+const celsiusToFahrenheit = c => Math.round((c * 9) / 5 + 32);
+const fahrenheitToCelsius = f => Math.round(((f - 32) * 5) / 9);
+```
+
+   </details>
+
+![temp-converter](https://user-images.githubusercontent.com/9408641/58381233-927bbd80-7fb2-11e9-8ea5-fd35972da658.gif)

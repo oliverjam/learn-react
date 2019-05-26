@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <meta charset="utf-8" />
-  <title>04 Perfect effects | FAC React</title>
+  <title>05 Transform the form | FAC React</title>
 
   <body>
     <!-- These scripts will make React and ReactDOM globally available. -->
@@ -15,13 +15,12 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      const Toggle = props => {
-        const [toggled, setToggled] = React.useState(false);
+      const TempConverter = () => {
         return (
-          <div>
-            <button onClick={() => setToggled(!toggled)}>Toggle</button>
-            {toggled && <div>{props.children}</div>}
-          </div>
+          <form>
+            <h1>Temperature converter</h1>
+            <output>converted output goes here</output>
+          </form>
         );
       };
 

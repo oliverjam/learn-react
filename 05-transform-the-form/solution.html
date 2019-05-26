@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <meta charset="utf-8" />
-  <title>04 Perfect effects | FAC React</title>
+  <title>05 Transform the form | FAC React</title>
 
   <body>
     <!-- These scripts will make React and ReactDOM globally available. -->
@@ -15,42 +15,60 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      const Toggle = props => {
-        const [toggled, setToggled] = React.useState(false);
-        React.useEffect(() => {
-          document.title = toggled ? "On" : "Off";
-        }, [toggled]);
+      const celsiusToFahrenheit = c => Math.round((c * 9) / 5 + 32);
+      const fahrenheitToCelsius = f => Math.round(((f - 32) * 5) / 9);
+
+      const TempConverter = () => {
+        const [scale, setScale] = React.useState("celsius");
+        const [temp, setTemp] = React.useState("");
+        const handleScaleChange = event => setScale(event.target.value);
         return (
-          <div>
-            <button onClick={() => setToggled(!toggled)}>Toggle</button>
-            {toggled && <div>{props.children}</div>}
-          </div>
+          <form>
+            <h1>Temperature converter</h1>
+            <fieldset>
+              <legend>Scale</legend>
+              <label htmlFor="celsius">Celsius</label>
+              <input
+                type="radio"
+                name="scale"
+                id="celsius"
+                value="celsius"
+                checked={"celsius" === scale}
+                onChange={handleScaleChange}
+                aria-label="celsius"
+              />
+              <label htmlFor="fahrenheit">Fahrenheit</label>
+              <input
+                type="radio"
+                name="scale"
+                id="fahrenheit"
+                value="fahrenheit"
+                checked={"fahrenheit" === scale}
+                onChange={handleScaleChange}
+                aria-label="fahrenheit"
+              />
+            </fieldset>
+            <label htmlFor="temp">Temperature</label>
+            <input
+              type="number"
+              id="temp"
+              value={temp}
+              onChange={event => setTemp(event.target.value)}
+            />
+            <div>
+              {temp && (
+                <output>
+                  {scale === "celsius"
+                    ? celsiusToFahrenheit(temp) + "F"
+                    : fahrenheitToCelsius(temp) + "C"}
+                </output>
+              )}
+            </div>
+          </form>
         );
       };
 
-      const MousePosition = props => {
-        const [x, setX] = React.useState(0);
-        const [y, setY] = React.useState(0);
-        React.useEffect(() => {
-          const handleMouseMove = event => {
-            setX(event.x);
-            setY(event.y);
-          };
-          window.addEventListener("mousemove", handleMouseMove);
-          return () => window.removeEventListener("mousemove", handleMouseMove);
-        }, []);
-        return (
-          <pre>
-            {x}:{y}
-          </pre>
-        );
-      };
-
-      const App = () => (
-        <Toggle>
-          <MousePosition />
-        </Toggle>
-      );
+      const App = () => <TempConverter />;
 
       ReactDOM.render(<App />, root);
     </script>
