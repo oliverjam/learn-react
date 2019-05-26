@@ -146,4 +146,6 @@ Create a new component called `Card`. It should take 3 props: `title`, `image` a
 
 Replace the `<p>` in the `App` component with a `<Card />`. Here's an image URL you can use: `https://source.unsplash.com/400x300/?burger`
 
+<img width="489" alt="task example" src="https://user-images.githubusercontent.com/9408641/58386359-a0ebc880-7ff6-11e9-8214-48b9206aa711.png">
+
 [Next section](/03-a-date-with-state)
