@@ -10,7 +10,7 @@ title.textContent = "Hello world!";
 
 This is frustrating because browsers already understand a more declarative way to create elements: HTML.
 
-```htmlmixed
+```html
 <h1 class="main-title">Hello world!</h1>
 ```
 
@@ -55,4 +55,6 @@ It can be helpful to remember that the magic HTML syntax is really normal functi
 
 ### Important warning
 
-Since JSX is closer to JS than HTML: **we have to use the camelCase versions of HTML attributes**: `class` becomes `className`, `for` becomes `htmlFor` and `tabindex` becomes `tabIndex` etc.
+Since JSX is closer to JS than HTML **we have to use the camelCase versions of HTML attributes**: `class` becomes `className`, `for` becomes `htmlFor` and `tabindex` becomes `tabIndex` etc.
+
+[Next section](/02-component-proponent)
