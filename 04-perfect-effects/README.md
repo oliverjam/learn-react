@@ -121,7 +121,7 @@ We're going to enhance our `Toggle` component from Part 3. You can either keep w
 
    </details>
 
-1. Put `MouseMove` inside your `Toggle` so you can show and hide it. This is how your final `App` should look:
+1. Put `MousePosition` inside your `Toggle` so you can show and hide it. This is how your final `App` should look:
 
 ```jsx
 const App = () => (
