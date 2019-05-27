@@ -8,3 +8,4 @@ An introduction to React for beginners.
 2. [React components](/02-component-proponent)
 3. [Component state](/03-a-date-with-state)
 4. [Side effects](/04-perfect-effects)
+5. [Form handling](/05-transform-the-form)

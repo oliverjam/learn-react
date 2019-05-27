@@ -132,3 +132,5 @@ const App = () => (
 ```
 
 ![effect-example](https://user-images.githubusercontent.com/9408641/58380308-758dbd00-7fa7-11e9-8e93-cdc945530d55.gif)
+
+[Next section](/05-transform-the-form)
