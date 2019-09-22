@@ -51,6 +51,35 @@ Sometimes you need access to the old value of the state in order to update. The 
 
 E.g. instead of `setCount(10)` we could do `setCount(oldCount => oldCount + 1)` to update the count by one. You'll see an example of when this is necessary in the next section.
 
+<details>
+  <summary>A fake implementation that might help</summary>
+  
+```js
+function useState(initialState) {
+  // keep track of a state value
+  let state = initialState;
+  // create a function that can update the state
+  function setState(update) {
+    // if the user passed a function we call it with the old state
+    // then set the return value of the function as the new state
+    if (typeof update === "function") {
+      const newState = update(state);
+      state = newState;
+    } else {
+      // otherwise we just directly update the state
+      state = update;
+    }
+    // some magic React internal that will cause your component function to re-run
+    // this allows your component to get the updated value
+    rerenderTheComponentSomehow();
+  }
+  // return the state and updater function in an array for convenience
+  return [state, setState];
+}
+```
+  
+</details>
+
 ## Event listeners
 
 We have a function that will let us update the state, but how do we attach event listeners to our DOM nodes?
