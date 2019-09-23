@@ -57,4 +57,6 @@ It can be helpful to remember that the magic HTML syntax is really normal functi
 
 Since JSX is closer to JS than HTML **we have to use the camelCase versions of HTML attributes**: `class` becomes `className`, `for` becomes `htmlFor` and `tabindex` becomes `tabIndex` etc.
 
+Also self-closing tags (like `<img>`) must have a closing slash: `<img />`. This is optional in HTML but required in JSX.
+
 [Next section](/02-component-proponent)
