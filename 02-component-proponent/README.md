@@ -111,16 +111,21 @@ const App = () => (
 //   props: {
 //     children: [
 //       {
-//         type: Title,
-//         props: {
-//           children: "Hello world!",
-//         },
-//       },
-//       {
-//         type: "p",
-//         props: {
-//           children: "Welcome to my page",
-//         },
+//         type: Page,
+//         children: [
+//           {
+//             type: Title,
+//             props: {
+//               children: "Hello world!",
+//             },
+//           },
+//           {
+//             type: "p",
+//             props: {
+//               children: "Welcome to my page",
+//             },
+//           },
+//         ],
 //       },
 //     ],
 //   },
