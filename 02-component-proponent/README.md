@@ -135,7 +135,7 @@ const rootNode = document.querySelector("#root");
 ReactDOM.render(<App />, root);
 
 // will render this HTML to the DOM:
-// <div className="page">
+// <div class="page">
 //   <h1>Hello world!</h1>
 //   <p>Welcome to my page</p>
 // </div>
