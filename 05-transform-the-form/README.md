@@ -91,7 +91,7 @@ const Form = () => {
     <input
       type="checkbox"
       checked={checked}
-      onChange={event => setChecked(event.target.value)}
+      onChange={event => setChecked(event.target.checked)}
     />
   );
 };
