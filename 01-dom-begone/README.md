@@ -4,54 +4,50 @@ Interacting with the DOM can be a frustrating experience. It requires lots of aw
 
 ```javascript
 const title = document.createElement("h1");
-title.className = "main-title";
+title.className = "title";
 title.textContent = "Hello world!";
 ```
 
-This is frustrating because browsers already understand a more declarative way to create elements: HTML.
+This is frustrating because there is a more declarative way to create elements: HTML.
 
 ```html
-<h1 class="main-title">Hello world!</h1>
+<h1 class="title">Hello world!</h1>
 ```
 
-Unfortunately HTML is static—we can't use it to create elements dynamically as a user interacts with our app. This is where React comes in:
+Unfortunately we can't use HTML inside JavaScript files. HTML can't create elements dynamically as a user interacts with our app. This is where React comes in:
 
 ```jsx
-const title = <h1 className="main-title">Hello world!</h1>;
+const title = <h1 className="title">Hello world!</h1>;
 ```
 
 This variable is a _React element_. It's using a special syntax called [JSX](https://reactjs.org/docs/introducing-jsx.html) that lets us write HTML-like elements within our JavaScript.
 
 ### Technical sidenote
 
-JSX is _not JavaScript_. This means browsers don't understand it. React apps use a tool called [Babel](https://babeljs.io/) to turn this non-standard syntax into regular JS function calls that the browser can run.
+JSX is _not JavaScript_. It's an extra addon to make writing React elements more like writing HTML. This means browsers don't understand it. React apps use a tool called [Babel](https://babeljs.io/) to turn this non-standard syntax into regular JS function calls that the browser can run.
 
 The example above will be transformed into:
 
 ```javascript
-const title = React.createElement(
-  "h1",
-  { className: "main-title" },
-  "Hello world!"
-);
+const title = React.createElement("h1", { className: "title" }, "Hello world!");
 ```
 
-This function call returns an object that describes your element:
+This function call will return an object that describes your element:
 
 ```javascript
 // over-simplified for examples sake
 const title = {
   type: "h1",
   props: {
-    className: "main-title",
+    className: "title",
     children: "Hello world!",
   },
 };
 ```
 
-React builds up a big tree structure of all your element objects and knows how to efficiently render them. This is called the [virtual DOM](https://reactjs.org/docs/reconciliation.html).
+React builds up one big tree structure of all these element objects that represents your entire app. It then uses this tree to create the actual DOM elements for you. (This is called the [virtual DOM](https://reactjs.org/docs/reconciliation.html), but you don't need to worry about that right now)
 
-It can be helpful to remember that the magic HTML syntax is really normal function calls that return objects.
+It can be helpful to remember that the HTML-like syntax is really normal function calls that return objects.
 
 ### Important warning
 
