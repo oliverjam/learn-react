@@ -123,25 +123,6 @@ This is quite powerful, as you can now nest your components to build up more com
 </Title>
 ```
 
-### Interpolating expressions
-
-We've just introduced another JSX concept—we can put dynamic JS values into our HTML using curly brackets. This is similar to a template literal interpolation or Handlebars embedded expressions.
-
-You can do all kinds of JS stuff inside the curly brackets, like calculations or conditional expressions.
-
-```jsx
-function Hello(props) {
-  return <h1>Hello {props.name || "world"}!</h1>;
-}
-
-<Hello name="mum" />; // <h1>Hello mum!</h1>
-<Hello />; // <h1>Hello world!</h1> props.name is undefined so we get "world" instead
-```
-
-#### Note on expressions
-
-You can put any valid JS _expression_ inside the curly brackets. An expression must resolve to a value. E.g. `<p>{1 + 1}</p>` will end up as `<p>2</p>`, but `<p>{if (true) 1}</p>` won't work, since `if` blocks are _statements_, not expressions.
-
 ## Rendering to the page
 
 You may be wondering how we get these React components to actually show up on the page.
