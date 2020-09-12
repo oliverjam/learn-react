@@ -5,35 +5,45 @@ React elements aren't very useful on their own. They're just static values assig
 A _React component_ is a function that returns a React element.
 
 ```jsx
-const Title = () => <h1 className="main-title">Hello world!</h1>;
+function Title() {
+  return <h1 className="main-title">Hello world!</h1>;
+}
 ```
 
 These components are useful because JSX allows us to compose them together just like HTML elements:
 
 ```jsx
-const Page = () => (
-  <div className="page">
-    <Title /> // Title component we just made
-  </div>
-);
+function Title() {
+  return <h1 className="main-title">Hello world!</h1>;
+}
+
+function Page() {
+  return (
+    <div className="page">
+      <Title />
+    </div>
+  );
+}
 ```
 
-It's like making your own custom HTML tags.
+We can use our `Title` component as JSX within another component. It's like making your own custom HTML tags.
 
 ### Note
 
-**You have to capitalise your component names**. This is how JSX distinguishes between HTML and custom components. E.g. `<img />` will create an HTML image tag, but `<Image />` will call your custom component function named `Image`.
+**You have to capitalise your component names**. This is how JSX distinguishes between HTML and custom components. E.g. `<img />` will create an HTML image tag, but `<Img />` will look for a component function named `Img`.
 
 ## Dynamic components
 
 Our `Title` component is still not very useful: its className and children are both hard-coded. We want a re-usable and composable component (like an HTML element). Ideally we can use it like this:
 
 ```jsx
-const Page = () => (
-  <div className="page">
-    <Title className="whatever-i-want">Hello universe!</Title>
-  </div>
-);
+function Page() {
+  return (
+    <div className="page">
+      <Title className="whatever-i-want">Hello universe!</Title>
+    </div>
+  );
+}
 ```
 
 ### Props
@@ -41,7 +51,7 @@ const Page = () => (
 React will pass any properties you put on your JSX element to your component function. It bundles them all up into an object known as "props".
 
 ```jsx
-const Title = props => <h1 className={props.className}>{props.children}</h1>;
+const Title = (props) => <h1 className={props.className}>{props.children}</h1>;
 ```
 
 You can imagine your component function is being called with the props object as an argument like this:
@@ -61,7 +71,10 @@ We've just introduced another JSX concept—we can put dynamic JS values into ou
 You can do all kinds of JS stuff inside the curly brackets, like calculations or conditional expressions.
 
 ```jsx
-const Hello = props => <h1>Hello {props.name || "world"}!</h1>;
+function Hello(props) {
+  return <h1>Hello {props.name || "world"}!</h1>;
+}
+
 <Hello name="mum" />; // <h1>Hello mum!</h1>
 <Hello />; // <h1>Hello world!</h1> props.name is undefined so we get "world" instead
 ```
@@ -79,12 +92,14 @@ React consists of two libraries—the main `React` library and a specific `React
 We use the `ReactDOM.render()` function to put our app in the DOM. It takes an element as the first argument and a DOM node as the second.
 
 ```jsx
-const App = () => (
-  <Page>
-    <Title>Hello world!</Title>
-    <p>Welcome to my page</p>
-  </Page>
-);
+function App() {
+  return (
+    <Page>
+      <Title>Hello world!</Title>
+      <p>Welcome to my page</p>
+    </Page>
+  );
+}
 
 const rootNode = document.querySelector("#root");
 ReactDOM.render(<App />, rootNode);
@@ -98,12 +113,14 @@ Since your React app is like a tree of objects you only call `ReactDOM.render()`
 The component functions return React elements, which are objects describing an element, its properties, and its children. These objects form a tree, with a top-level element that renders child elements, that in turn have their own children. A small app might produce a tree like this:
 
 ```jsx
-const App = () => (
-  <Page>
-    <Title>Hello world!</Title>
-    <p>Welcome to my page</p>
-  </Page>
-);
+function App() {
+  return (
+    <Page>
+      <Title>Hello world!</Title>
+      <p>Welcome to my page</p>
+    </Page>
+  );
+}
 
 // App returns an object roughly like this:
 // {
