@@ -6,7 +6,7 @@ A _React component_ is a function that returns a React element.
 
 ```jsx
 function Title() {
-  return <h1 className="main-title">Hello world!</h1>;
+  return <h1 className="title">Hello world!</h1>;
 }
 ```
 
@@ -14,7 +14,7 @@ These components are useful because JSX allows us to compose them together just 
 
 ```jsx
 function Title() {
-  return <h1 className="main-title">Hello world!</h1>;
+  return <h1 className="title">Hello world!</h1>;
 }
 
 function Page() {
@@ -32,37 +32,96 @@ We can use our `Title` component as JSX within another component. It's like maki
 
 **You have to capitalise your component names**. This is how JSX distinguishes between HTML and custom components. E.g. `<img />` will create an HTML image tag, but `<Img />` will look for a component function named `Img`.
 
-## Dynamic components
+## Customising components
 
-Our `Title` component is still not very useful: its className and children are both hard-coded. We want a re-usable and composable component (like an HTML element). Ideally we can use it like this:
+A component where everything is hard-coded isn't very useful. It will always return the exact same thing, so there's almost no point being a function. Functions are most useful when they take _arguments_. Passing different arguments lets us change what the function returns each time we call it.
+
+JSX supports passing arguments to your components. It does this using the same syntax as HTML:
+
+```jsx
+<Title name="oli" />
+```
+
+React components only ever receive _one_ argument: an object containing all of the properties passed to it. This argument is commonly named "props" (short for properties). So in this case our `Title` function will receive a single argument that is an object containing one property called "name".
+
+```jsx
+function Title(props) {
+  console.log(props); // { name: "oli" }
+  return <div className="title">Hello world</div>;
+}
+```
+
+You can use these props within your components to customise them. For example we can interpolate them into our JSX to change the rendered HTML:
+
+```jsx
+function Title(props) {
+  return <div className="title">Hello {props.name}</div>;
+}
+```
+
+Now we can re-use our `Title` component to render different DOM elements:
 
 ```jsx
 function Page() {
   return (
     <div className="page">
-      <Title className="whatever-i-want">Hello universe!</Title>
+      <Title name="oli" />
+      <Title name="sam" />
     </div>
   );
 }
+// <div class="page"><h1 class="title">Hello oli</h1><h1 class="title">Hello sam</h1></div>
 ```
 
-### Props
+### Non-string props
 
-React will pass any properties you put on your JSX element to your component function. It bundles them all up into an object known as "props".
+Since JSX is JavaScript it supports passing _any_ valid JS expression to your components, not just strings. To pass JS values as props you use **curly brackets**, just like interpolating expressions inside tags.
 
 ```jsx
-const Title = (props) => <h1 className={props.className}>{props.children}</h1>;
+function Page() {
+  const customName = "oliver" + " phillips";
+  return (
+    <div className="page">
+      <Title name={customName} />
+      <Title name={5 * 5} />
+    </div>
+  );
+}
+// <div class="page"><h1 class="title">Hello oliver phillips</h1><h1 class="title">Hello 25</h1></div>
 ```
 
-You can imagine your component function is being called with the props object as an argument like this:
+### Children
 
-```javascript
-Title({ className: "whatever-i-want", children: "Hello universe!" });
+It would be nice if we could nest our components just like HTML. Right now this won't work, since we hard-coded the text inside our `<h1>`:
+
+```jsx
+<Title>Hello oli</Title>
 ```
 
-#### Note on children
+JSX supports a special prop to achieve this: `children`. Whatever value you put _between_ JSX tags will be passed to the component as a prop named `children`. You can then access and use it exactly like any other prop.
 
-Anything between two JSX tags (e.g. `<Title>Hello universe!</Title>`) will be passed to the component as `props.children`. Children is the same as any other prop, which means you can pass it like `<Title children="Hello universe!" />` if you like. Putting it between the tags makes it a little closer to HTML.
+```jsx
+function Title(props) {
+  return <div className="title">{props.children}</div>;
+}
+```
+
+Now this JSX will work as we expect:
+
+```jsx
+<Title>Hello oli</Title>
+// <h1 class="title">Hello oli</h1>
+```
+
+This is quite powerful, as you can now nest your components to build up more complex DOM elements.
+
+```jsx
+// pretend we have defined Image and BigText components above
+<Title>
+  <Image src="hand-wave.svg" />
+  <BigText>Hello oli</BigText>
+</Title>
+```
 
 ### Interpolating expressions
 
