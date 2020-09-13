@@ -150,7 +150,7 @@ ReactDOM.render(<App />, rootNode);
 Since your React app is like a tree of objects you only call `ReactDOM.render()` **once**. You give it the very top-level component of your app and it will move down the tree rendering all the children recursively.
 
 <details>
-<summary>A bit more detail (that you don't _need_ to understand)</summary>
+<summary>A bit more detail (that you don't need to understand)</summary>
 
 The component functions return React elements, which are objects describing an element, its properties, and its children. These objects form a tree, with a top-level element that renders child elements, that in turn have their own children. Here is a small React component that renders a couple more:
 
