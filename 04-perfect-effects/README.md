@@ -15,7 +15,7 @@ It's called `useEffect()`. It takes a function as an argument, which will be run
 Let's say we want our counter component to also update the page title (so the count shows in the browser tab):
 
 ```jsx
-const Counter = props => {
+function Counter(props) {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ const Counter = props => {
   });
 
   return <button onClick={() => setCount(count + 1)}>Count is {count}</button>;
-};
+}
 ```
 
 ![effect-example](https://user-images.githubusercontent.com/9408641/57864430-c9ecac00-77f3-11e9-8811-1242688c3e7d.gif)
@@ -37,7 +37,7 @@ By default all the effects in a component will re-run after every render of that
 `useEffect()` takes a second argument to optimise when it re-runs: an array of dependencies for the effect. Any variable used inside your effect function should go into this array:
 
 ```jsx
-const Counter = props => {
+function Counter(props) {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
@@ -45,7 +45,7 @@ const Counter = props => {
   }, [count]);
 
   return <button onClick={() => setCount(count + 1)}>Count is {count}</button>;
-};
+}
 ```
 
 Now our effect will only re-run if the `count` changes.
@@ -57,19 +57,20 @@ Sometimes your effect will not be dependent on _any_ props or state, and you onl
 For example if we wanted our counter to be controlled by the "up" arrow key instead:
 
 ```jsx
-const Counter = props => {
+function Counter(props) {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    const handleKeyDown = event => {
-      if (event.key === "ArrowUp") setCount(prevCount => prevCount + 1);
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowUp") {
+        setCount((prevCount) => prevCount + 1);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return <div>Count is {count}</div>;
-};
+}
 ```
 
 We add an event listener to the `window`, and pass an empty array to `useEffect()`. This will keep us from adding new event listeners every time `count` updates and triggers a re-render.
@@ -87,19 +88,19 @@ If you return a function from your effect React will run it to clean up.
 React performs this cleanup when the component unmounts. However, effects usually run after every render. This means React will _also_ clean up effects from the previous render before running the next effects.
 
 ```jsx
-const Counter = props => {
+function Counter(props) {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    const handleKeyDown = event => {
-      if (event.key === "ArrowUp") setCount(prevCount => prevCount + 1);
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowUp") setCount((prevCount) => prevCount + 1);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return <div>Count is {count}</div>;
-};
+}
 ```
 
 The arrow function we return will be called if the component unmounts (is removed from the page). That will ensure we don't keep running an unnecessary event listener and trying to update state that doesn't exist anymore.
@@ -124,11 +125,13 @@ We're going to enhance our `Toggle` component from Part 3. You can either keep w
 1. Put `MousePosition` inside your `Toggle` so you can show and hide it. This is how your final `App` should look:
 
 ```jsx
-const App = () => (
+function App() {
+  return (
   <Toggle>
     <MousePosition />
   </Toggle>
 );
+}
 ```
 
 ![effect-example](https://user-images.githubusercontent.com/9408641/58380308-758dbd00-7fa7-11e9-8e93-cdc945530d55.gif)
