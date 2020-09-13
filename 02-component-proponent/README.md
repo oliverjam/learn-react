@@ -14,6 +14,19 @@ function Title() {
 
 A React element can be a JSX element, or a string, number, boolean or array of JSX elements. Returning `null`, `undefined`, `false` or `""` (empty string) will cause your component to render nothing.
 
+**Note**: components are normal JS functions, which means they can only return **one thing**. So the following JSX is invalid:
+
+```jsx
+function Thing() {
+  return (
+    <span>Hello</span>
+    <span>Goodbye</span>
+  )
+}
+```
+
+since `Thing` would be returning _two_ elements. The solution to this is to wrap sibling elements in a parent `<div>` (or use a [Fragment](https://reactjs.org/docs/fragments.html)).
+
 ## Composing components
 
 Components are useful because JSX allows us to compose them together just like HTML elements:
