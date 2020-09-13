@@ -1,10 +1,10 @@
 ## React state
 
-We've seen how to create static templates for rendering HTML, but how do we get anything to change on the page? How do we respond to user events?
+Most of an app's UI is static, but some parts need to update in response to things like user actions. For example if a user clicks a button, or the app fetches some JSON from an API server.
 
-We need "state". This is a JavaScript representation of the state your UI is in. E.g. whether a button has been clicked, the JSON you got back from an API, a search term a user has typed in etc.
+In a "traditional" vanilla JS app these stateful values would be stored directly in the DOM. For example a counter might update the text content of a DOM element each time a button is clicked. However this can get quite complex to keep track of as your app grows, since you have to manually update each bit of the DOM when changes occur.
 
-By rendering our UI based on this state we can tell React how the page should look for any given state and let it worry about keeping the DOM in sync.
+In React all stateful values are stored as JS variables. We can render our UI based on these variables, and let React take care of updating the DOM to match whenever the state changes.
 
 ## Using state
 
@@ -17,13 +17,15 @@ function Counter(props) {
 }
 ```
 
-We want to be able to change the `count` variable and have the component re-render to match the new value. React provides a way to make this value "stateful": `React.useState()`.
+We could write a function that updated the `count` value by one, but for our UI to update we'd need some way to make our `Counter` function run again with the new value.
 
-`useState()` takes the initial state value as an argument, and returns an array with two properties: the state value and a function that lets you update the state value.
+React provides a way to make this value "stateful", which means React will keep track of the value and re-run our component function any time that value changes.
+
+We use the `React.useState` method for this. It takes the initial state value as an argument, and returns an array. This array contains two things: the state value, and a function that lets you _update_ the state value.
 
 ```jsx
 function Counter(props) {
-  const countState = React.useState(0);
+  const stateArray = React.useState(0);
   const count = countState[0];
   const setCount = countState[1];
   return <button>Count is {count}</button>;
@@ -39,9 +41,13 @@ function Counter(props) {
 }
 ```
 
-The updater function (`setCount`) takes a new state value as its argument. E.g. if we wanted to update the `count` to 10 we would call `setCount(10)`.
+The updater function (that we named `setCount` in this example) lets us update our state value and tells React to re-run this component function with the new value.
+
+The updater function takes a new state value as its argument. E.g. if we wanted to update the `count` to 10 we would call `setCount(10)`. If we wanted to increment `count` by one we would call `setCount(count + 1)`.
 
 Whenever the updater function is called the component will re-render with the new value of the state. This will keep your UI in sync with the state.
+
+**Note**: never _mutate_ a state variable. For example `setCount(count++)` will break React's update in subtle and confusing ways. You should always pass a **totally new variable** to the updater function, and leave the _old_ state variable unchanged.
 
 ### Updates based on previous state
 
