@@ -210,8 +210,27 @@ Time to create some components! Open up `index.1.html` in your editor. You shoul
 
 Create a new component called `Card`. It should take 3 props: `title`, `image` and `children`, that render into `h2`, `img` and `p` elements respectively.
 
-Replace the `<p>` in the `App` component with a `<Card />`. Here's an image URL you can use: `https://source.unsplash.com/400x300/?burger`
+Replace the `p` in the `App` component with a `Card`. Pass whatever you like as the 3 props (although here's an image URL you can use: `https://source.unsplash.com/400x300/?burger`).
 
 <img width="489" alt="task example" src="https://user-images.githubusercontent.com/9408641/58386359-a0ebc880-7ff6-11e9-8214-48b9206aa711.png">
+
+<details>
+<summary>Hint</summary>
+
+This is what your `App` should return:
+
+```jsx
+<Page>
+  <Title>Hello world!</Title>
+  <Card
+    title="Tasty burger"
+    image="https://source.unsplash.com/400x300/?burger"
+  >
+    That is a good burger
+  </Card>
+</Page>
+```
+
+</details>
 
 [Next section](/03-a-date-with-state)
