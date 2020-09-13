@@ -1,4 +1,4 @@
-# React Elements
+## React Elements
 
 Interacting with the DOM can be a frustrating experience. It requires lots of awkward lines of code where you tell the browser _exactly_ how to create an element with the right properties.
 
@@ -79,7 +79,7 @@ const result = <div>{number > 0.5 ? "You won!" : "You lost"}</div>;
 // the other 50%: <div>You lost</div>
 ```
 
-#### Note on expressions
+### Note on expressions
 
 You can put any valid JS _expression_ inside the curly brackets. An expression is code that _resolves to a value_. I.e. you can assign it to a variable. These are all valid expressions:
 

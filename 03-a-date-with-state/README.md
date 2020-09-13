@@ -1,7 +1,5 @@
 ## React state
 
-## What is state?
-
 We've seen how to create static templates for rendering HTML, but how do we get anything to change on the page? How do we respond to user events?
 
 We need "state". This is a JavaScript representation of the state your UI is in. E.g. whether a button has been clicked, the JSON you got back from an API, a search term a user has typed in etc.
@@ -13,7 +11,7 @@ By rendering our UI based on this state we can tell React how the page should lo
 Imagine we have a counter component. When the button is clicked we want the count to go up one:
 
 ```jsx
-const Counter = props => {
+const Counter = (props) => {
   const count = 0;
   return <button>Count is {count}</button>;
 };
@@ -24,7 +22,7 @@ We want to be able to change the `count` variable and have the component re-rend
 `useState()` takes the initial state value as an argument, and returns an array with two properties: the state value and a function that lets you update the state value.
 
 ```jsx
-const Counter = props => {
+const Counter = (props) => {
   const countState = React.useState(0);
   const count = countState[0];
   const setCount = countState[1];
@@ -35,7 +33,7 @@ const Counter = props => {
 It's common to use array destructuring to simplify this:
 
 ```jsx
-const Counter = props => {
+const Counter = (props) => {
   const [count, setCount] = React.useState(0);
   return <button>Count is {count}</button>;
 };
@@ -85,7 +83,7 @@ function useState(initialState) {
 We have a function that will let us update the state, but how do we attach event listeners to our DOM nodes?
 
 ```jsx
-const Counter = props => {
+const Counter = (props) => {
   const [count, setCount] = React.useState(0);
   const handleClick = () => setCount(count + 1);
   return <button onClick={handleClick}>Count is {count}</button>;
