@@ -206,7 +206,7 @@ This is the final DOM created for this app:
 
 ## Workshop Part 1
 
-Time to create some components! Open up `index.1.html` in your editor. You should see the components we created above.
+Time to create some components! Open up `02-component-proponent/challenge.html` in your editor. You should see the components we created above.
 
 Create a new component called `Card`. It should take 3 props: `title`, `image` and `children`, that render into `h2`, `img` and `p` elements respectively.
 
