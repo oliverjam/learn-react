@@ -15,16 +15,22 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      const Title = props => <h1>{props.children}</h1>;
+      function Title(props) {
+        return <h1>{props.children}</h1>;
+      }
 
-      const Page = props => <div className="page">{props.children}</div>;
+      function Page(props) {
+        return <div className="page">{props.children}</div>;
+      }
 
-      const App = () => (
-        <Page>
-          <Title>Hello world!</Title>
-          <p>Welcome to my page</p>
-        </Page>
-      );
+      function App() {
+        return (
+          <Page>
+            <Title>Hello world!</Title>
+            <p>Welcome to my page</p>
+          </Page>
+        );
+      }
 
       ReactDOM.render(<App />, root);
     </script>
