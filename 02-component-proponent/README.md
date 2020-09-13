@@ -150,9 +150,9 @@ ReactDOM.render(<App />, rootNode);
 Since your React app is like a tree of objects you only call `ReactDOM.render()` **once**. You give it the very top-level component of your app and it will move down the tree rendering all the children recursively.
 
 <details>
-<summary>A bit more detail</summary>
+<summary>A bit more detail (that you don't _need_ to understand)</summary>
 
-The component functions return React elements, which are objects describing an element, its properties, and its children. These objects form a tree, with a top-level element that renders child elements, that in turn have their own children. A small app might produce a tree like this:
+The component functions return React elements, which are objects describing an element, its properties, and its children. These objects form a tree, with a top-level element that renders child elements, that in turn have their own children. Here is a small React component that renders a couple more:
 
 ```jsx
 function App() {
@@ -164,40 +164,42 @@ function App() {
   );
 }
 
-// App returns an object roughly like this:
-// {
-//   type: App,
-//   props: {
-//     children: [
-//       {
-//         type: Page,
-//         children: [
-//           {
-//             type: Title,
-//             props: {
-//               children: "Hello world!",
-//             },
-//           },
-//           {
-//             type: "p",
-//             props: {
-//               children: "Welcome to my page",
-//             },
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// };
-
 const rootNode = document.querySelector("#root");
 ReactDOM.render(<App />, root);
+```
 
-// will render this HTML to the DOM:
-// <div class="page">
-//   <h1>Hello world!</h1>
-//   <p>Welcome to my page</p>
-// </div>
+`<App />` tells React to call the `App` function (with an empty props object, since we didn't pass any props). This returns an object roughly like this:
+
+```js
+// React's actual internal representation is a bit more complex
+{
+  type: function Page,
+  children: [
+    {
+      type: function Title,
+      props: {
+        children: "Hello world!",
+      },
+    },
+    {
+      type: "p",
+      props: {
+        children: "Welcome to my page",
+      },
+    },
+  ],
+}
+```
+
+This object is passed to `ReactDOM.render`, which will loop through every property. If it finds a string type (e.g. "p") it'll create a DOM node. If it finds a function type it'll call the function with the right props to get the elements that component returns. It keeps doing this until it runs out of elements to render.
+
+This is the final DOM created for this app:
+
+```html
+<div class="page">
+  <h1>Hello world!</h1>
+  <p>Welcome to my page</p>
+</div>
 ```
 
 </details>
