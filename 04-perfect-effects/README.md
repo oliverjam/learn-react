@@ -118,7 +118,13 @@ We're going to enhance our `Toggle` component from Part 3. You can either keep w
    Hint (you can click me)
    </summary>
 
-   You probably want to look at the [mousemove](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event) event. Here are [all the properties available on mouse events](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent#Properties).
+   You can keep track of where the mouse is with a "mousemove" event listener on the `window`.
+
+   ```js
+   const handleMouseMove = (event) => {
+     console.log(event.x, event.y);
+   };
+   ```
 
    </details>
 
@@ -127,10 +133,10 @@ We're going to enhance our `Toggle` component from Part 3. You can either keep w
 ```jsx
 function App() {
   return (
-  <Toggle>
-    <MousePosition />
-  </Toggle>
-);
+    <Toggle>
+      <MousePosition />
+    </Toggle>
+  );
 }
 ```
 
