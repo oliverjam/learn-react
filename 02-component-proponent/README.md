@@ -1,6 +1,6 @@
 ## React components
 
-React elements aren't very useful on their own. They're just static values assigned to a variable. To build a dynamic interface we need something like functions.
+React elements aren't very useful on their own. They're just static values assigned to a variable. To build a dynamic interface we need something reusable and dynamic, like functions.
 
 A _React component_ is a function that returns a React element.
 
@@ -42,11 +42,13 @@ JSX supports passing arguments to your components. It does this using the same s
 <Title name="oli" />
 ```
 
-React components only ever receive _one_ argument: an object containing all of the properties passed to it. This argument is commonly named "props" (short for properties). So in this case our `Title` function will receive a single argument that is an object containing one property called "name".
+React component functions only ever receive _one_ argument: an object containing all of the arguments passed to it. React will gather up any `key="value` arguments from the JSX and create this object.
+
+This object is commonly named "props" (short for properties). Using an object like this means you don't have to worry the order of arguments. So in this case our `Title` function will receive a single argument: an object with a "name" property.
 
 ```jsx
 function Title(props) {
-  console.log(props); // { name: "oli" }
+  console.log(props); // { name: "oli" } (assuming <Title name="oli" /> was used)
   return <div className="title">Hello world</div>;
 }
 ```
@@ -73,7 +75,7 @@ function Page() {
 // <div class="page"><h1 class="title">Hello oli</h1><h1 class="title">Hello sam</h1></div>
 ```
 
-### Non-string props
+### Non-string props
 
 Since JSX is JavaScript it supports passing _any_ valid JS expression to your components, not just strings. To pass JS values as props you use **curly brackets**, just like interpolating expressions inside tags.
 
