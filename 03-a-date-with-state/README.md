@@ -91,8 +91,8 @@ We have a function that will let us update the state, but how do we attach event
 ```jsx
 function Counter(props) {
   const [count, setCount] = React.useState(0);
-  const handleClick = () => setCount(count + 1);
-  return <button onClick={handleClick}>Count is {count}</button>;
+  const increment = () => setCount(count + 1);
+  return <button onClick={increment}>Count is {count}</button>;
 }
 ```
 
@@ -106,16 +106,27 @@ In this example we are passing a function that calls `setCount` with our new val
 
 Time to add some state! Open up `03-a-date-with-state/challenge.html` in your editor. You should see the `Counter` component we just created.
 
-Create a new component called `Toggle`. It should render a button that toggles a boolean state value. It should show/hide its children based on this state.
+Create a new component called `Toggle`. It should always render a button that toggles a boolean state value when clicked. It should also render a div containing its children, but only when the boolean state value is true.
 
 Example usage:
 
 ```jsx
 function App() {
-  return <Toggle>Toggle me!</Toggle>;
+  return <Toggle>This text is hidden until the button is clicked</Toggle>;
 }
 ```
 
 ![toggle-example](https://user-images.githubusercontent.com/9408641/57849940-98b0b380-77d4-11e9-86ef-315861f60489.gif)
+
+<details>
+<summary>Hint</summary>
+
+Remember you can use ternaries to do conditional logic inside JSX. Rendering `null` or an empty string tells React to put nothing on the page. E.g.
+
+```jsx
+<h2>{x > 5 ? null : <div>It's less than 5</div>}<h2>
+```
+
+</details>
 
 [Next section](/04-perfect-effects)

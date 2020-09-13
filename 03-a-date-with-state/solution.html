@@ -15,17 +15,25 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      const Toggle = props => {
-        const [toggled, setToggled] = React.useState(false);
+      // Toggle renders a div containing two things:
+      // a button that toggles that state boolean when clicked
+      // a div containing whatever children were passed
+      // however if the state value is false this div is replaced with nothing
+      function Toggle(props) {
+        const [open, setOpen] = React.useState(false);
+        const toggleOpen = () => setOpen(!open); // !open gives us the opposite, e.g. true -> false or false -> true
         return (
           <div>
-            <button onClick={() => setToggled(!toggled)}>Toggle</button>
-            {toggled && <div>{props.children}</div>}
+            <button onClick={toggleOpen}>Toggle</button>
+            {open ? <div>{props.children}</div> : null}
           </div>
         );
-      };
+      }
 
-      const App = () => <Toggle>Toggle me!</Toggle>;
+      // renders Toggle with "This text is..." as the children prop
+      function App() {
+        return <Toggle>This text is hidden until the button is clicked</Toggle>;
+      }
 
       ReactDOM.render(<App />, root);
     </script>
