@@ -10,7 +10,13 @@ function Title() {
 }
 ```
 
-These components are useful because JSX allows us to compose them together just like HTML elements:
+### Valid elements
+
+A React element can be a JSX element, or a string, number, boolean or array of JSX elements. Returning `null`, `undefined`, `false` or `""` (empty string) will cause your component to render nothing.
+
+## Composing components
+
+Components are useful because JSX allows us to compose them together just like HTML elements:
 
 ```jsx
 function Title() {
@@ -28,7 +34,7 @@ function Page() {
 
 We can use our `Title` component as JSX within another component. It's like making your own custom HTML tags.
 
-### Note
+### Always capitalise components
 
 **You have to capitalise your component names**. This is how JSX distinguishes between HTML and custom components. E.g. `<img />` will create an HTML image tag, but `<Img />` will look for a component function named `Img`.
 
