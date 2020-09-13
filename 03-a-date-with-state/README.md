@@ -11,10 +11,10 @@ By rendering our UI based on this state we can tell React how the page should lo
 Imagine we have a counter component. When the button is clicked we want the count to go up one:
 
 ```jsx
-const Counter = (props) => {
+function Counter(props) {
   const count = 0;
   return <button>Count is {count}</button>;
-};
+}
 ```
 
 We want to be able to change the `count` variable and have the component re-render to match the new value. React provides a way to make this value "stateful": `React.useState()`.
@@ -22,21 +22,21 @@ We want to be able to change the `count` variable and have the component re-rend
 `useState()` takes the initial state value as an argument, and returns an array with two properties: the state value and a function that lets you update the state value.
 
 ```jsx
-const Counter = (props) => {
+function Counter(props) {
   const countState = React.useState(0);
   const count = countState[0];
   const setCount = countState[1];
   return <button>Count is {count}</button>;
-};
+}
 ```
 
 It's common to use array destructuring to simplify this:
 
 ```jsx
-const Counter = (props) => {
+function Counter(props) {
   const [count, setCount] = React.useState(0);
   return <button>Count is {count}</button>;
-};
+}
 ```
 
 The updater function (`setCount`) takes a new state value as its argument. E.g. if we wanted to update the `count` to 10 we would call `setCount(10)`.
@@ -83,11 +83,11 @@ function useState(initialState) {
 We have a function that will let us update the state, but how do we attach event listeners to our DOM nodes?
 
 ```jsx
-const Counter = (props) => {
+function Counter(props) {
   const [count, setCount] = React.useState(0);
   const handleClick = () => setCount(count + 1);
   return <button onClick={handleClick}>Count is {count}</button>;
-};
+}
 ```
 
 You can pass event listener functions in JSX like any other property. They are always formatted as "on" followed by the camelCased event name. So "onClick", "onKeyDown", "onChange" etc.
@@ -98,14 +98,16 @@ In this example we are passing a function that calls `setCount` with our new val
 
 ## Workshop Part 2
 
-Time to add some state! Open up `index.2.html` in your editor. You should see the `Counter` component we just created.
+Time to add some state! Open up `03-a-date-with-state/challenge.html` in your editor. You should see the `Counter` component we just created.
 
 Create a new component called `Toggle`. It should render a button that toggles a boolean state value. It should show/hide its children based on this state.
 
 Example usage:
 
 ```jsx
-const App = () => <Toggle>Toggle me!</Toggle>;
+function App() {
+  return <Toggle>Toggle me!</Toggle>;
+}
 ```
 
 ![toggle-example](https://user-images.githubusercontent.com/9408641/57849940-98b0b380-77d4-11e9-86ef-315861f60489.gif)
