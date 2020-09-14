@@ -26,8 +26,8 @@ We use the `React.useState` method for this. It takes the initial state value as
 ```jsx
 function Counter(props) {
   const stateArray = React.useState(0);
-  const count = countState[0];
-  const setCount = countState[1];
+  const count = stateArray[0];
+  const setCount = stateArray[1];
   return <button>Count is {count}</button>;
 }
 ```
