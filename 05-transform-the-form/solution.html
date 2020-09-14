@@ -15,13 +15,13 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      const celsiusToFahrenheit = c => Math.round((c * 9) / 5 + 32);
-      const fahrenheitToCelsius = f => Math.round(((f - 32) * 5) / 9);
+      const celsiusToFahrenheit = (c) => Math.round((c * 9) / 5 + 32);
+      const fahrenheitToCelsius = (f) => Math.round(((f - 32) * 5) / 9);
 
-      const TempConverter = () => {
+      function TempConverter() {
         const [scale, setScale] = React.useState("celsius");
         const [temp, setTemp] = React.useState("");
-        const handleScaleChange = event => setScale(event.target.value);
+        const handleScaleChange = (event) => setScale(event.target.value);
         return (
           <form>
             <h1>Temperature converter</h1>
@@ -51,7 +51,7 @@
               type="number"
               id="temp"
               value={temp}
-              onChange={event => setTemp(event.target.value)}
+              onChange={(event) => setTemp(event.target.value)}
             />
             <div>
               {temp && (
@@ -64,7 +64,7 @@
             </div>
           </form>
         );
-      };
+      }
 
       ReactDOM.render(<TempConverter />, root);
     </script>
