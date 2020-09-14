@@ -1,14 +1,14 @@
 # Side effects
 
-React is designed to make it easy to keep the state of your application in sync with your UI. We've seen how JSX and props/state help keep what you're rendering up-to-date, but what about side-effects?
+React is designed to make it easy to keep your application in sync with your data/state. Components are primarily for keeping the DOM in sync—we return JSX that describes how the UI should look for any given state/props and React manages updating the page.
 
-There are lots of things in this category: setting up intervals or global event listeners, fetching data from an API, manually focusing DOM elements (for accessibility), etc.
+But most apps need more than just a UI—there are also things like fetching data from an API, timers/intervals, global event listeners etc. These are known as "side effects". This means they aren't the main thing a component does (i.e. rendering DOM elements).
 
 Ideally we want a way to ensure our effects reflect changes in state just like our UI does.
 
 ## Using effects
 
-React provides another "hook" like `useState()` for running side-effects after your component renders.
+React provides another "hook" like `useState()` for running side-effects after your component renders (i.e. after the function is called and returns some JSX).
 
 It's called `useEffect()`. It takes a function as an argument, which will be run after every render (by default).
 
