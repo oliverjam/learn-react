@@ -1,14 +1,14 @@
 # Side effects
 
-React is designed to make it easy to keep the state of your application in sync with your UI. We've seen how JSX and props/state help keep what you're rendering up-to-date, but what about side-effects?
+React is designed to make it easy to keep your application in sync with your data/state. Components are primarily for keeping the DOM in sync—we return JSX that describes how the UI should look for any given state/props and React manages updating the page.
 
-There are lots of things in this category: setting up intervals or global event listeners, fetching data from an API, manually focusing DOM elements (for accessibility), etc.
+But most apps need more than just a UI—there are also things like fetching data from an API, timers/intervals, global event listeners etc. These are known as "side effects". This means they aren't the main thing a component does (i.e. rendering DOM elements).
 
 Ideally we want a way to ensure our effects reflect changes in state just like our UI does.
 
 ## Using effects
 
-React provides another "hook" like `useState()` for running side-effects after your component renders.
+React provides another "hook" like `useState()` for running side-effects after your component renders (i.e. after the function is called and returns some JSX).
 
 It's called `useEffect()`. It takes a function as an argument, which will be run after every render (by default).
 
@@ -32,9 +32,9 @@ React will run the arrow function we passed to `useEffect()` every time this com
 
 ## Skipping effects
 
-By default all the effects in a component will re-run after every render of that component. If your effect does something expensive like hitting an API (or your component re-renders due to unrelated changes a lot) then this could be a problem.
+By default all the effects in a component will re-run after every render of that component. If your effect does something expensive/slow like fetching from an API (or sorting a massive array etc) then this could be a problem.
 
-`useEffect()` takes a second argument to optimise when it re-runs: an array of dependencies for the effect. Any variable used inside your effect function should go into this array:
+`useEffect()` takes a second argument to optimise when it re-runs: an array of _dependencies_ for the effect. Any variable used inside your effect function should go into this array:
 
 ```jsx
 function Counter(props) {
@@ -48,13 +48,13 @@ function Counter(props) {
 }
 ```
 
-Now our effect will only re-run if the `count` changes.
+Now our effect will only re-run if the value of `count` in the current render is different to what it was in the previous render.
 
 ### Running once
 
-Sometimes your effect will not be dependent on _any_ props or state, and you only want it to run once (after the component renders the first time). In this case you can pass an empty array as the second argument to `useEffect()`, to signify that the effect has no dependencies and never needs to re-run.
+Sometimes your effect will not be dependent on _any_ props or state, and you only want it to run once (after the component renders the first time). In this case you can pass an empty array as the second argument to `useEffect()`, to signify that the effect has no dependencies and never needs to be re-run.
 
-For example if we wanted our counter to be controlled by the "up" arrow key instead:
+For example if we wanted our counter to increment when the "up" arrow key is pressed:
 
 ```jsx
 function Counter(props) {
@@ -77,33 +77,40 @@ We add an event listener to the `window`, and pass an empty array to `useEffect(
 
 #### Note
 
-It's important to note that we're passing a function to `setCount` here. This will ensure we always have the up-to-date current value of `count` when we update it. If we just referenced `count` directly (`setCount(count + 1)`) the value would always be `0`, since that's what it was when we created the event listener. So the count would update to `1`, then never change.
+It's important to note that we're passing a function instead of a number to `setCount`. This will ensure we always have the up-to-date current value of `count` when we update it. If we just referenced `count` directly (`setCount(count + 1)`) the value would always be `0`, since that's what it was when we created the event listener. So the count would update to `1`, then never change.
 
 ## Cleaning up effects
 
-Some effects need to be cleaned up. For example intervals need to be cancelled and global event listeners need to be removed when the component is no longer on the page (called "unmounting" in React).
+Some effects need to be "cleaned up". For example intervals need to be cancelled and global event listeners need to be removed when the component is no longer on the page (called "unmounting" in React). Otherwise you'd have a bunch of code running in the background trying to update a component that doesn't exist anymore.
 
-If you return a function from your effect React will run it to clean up.
+If you return a function from your effect React will call it to clean up.
 
-React performs this cleanup when the component unmounts. However, effects usually run after every render. This means React will _also_ clean up effects from the previous render before running the next effects.
+React performs this cleanup when the component unmounts. However, effects run after every render by default. This means React will _also_ clean up effects from the previous render before running the next effects.
 
 ```jsx
 function Counter(props) {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
+    // create handler fn for keydown events
     const handleKeyDown = (event) => {
       if (event.key === "ArrowUp") setCount((prevCount) => prevCount + 1);
     };
+    // run handler function when keydowns happen
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    // create fn that removes event listener
+    const cleanup = () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+    // react will run `cleanup` whenever it needs to remove this effect
+    return cleanup;
   }, []);
 
   return <div>Count is {count}</div>;
 }
 ```
 
-The arrow function we return will be called if the component unmounts (is removed from the page). That will ensure we don't keep running an unnecessary event listener and trying to update state that doesn't exist anymore.
+The `cleanup` function we return will be called if the component unmounts (is removed from the page). That will ensure we don't keep running an unnecessary event listener and trying to update state that doesn't exist anymore.
 
 ## Workshop Part 3
 
