@@ -184,7 +184,7 @@ function App() {
 }
 
 const rootNode = document.querySelector("#root");
-ReactDOM.render(<App />, root);
+ReactDOM.render(<App />, rootNode);
 ```
 
 `<App />` tells React to call the `App` function (with an empty props object, since we didn't pass any props). This returns an object roughly like this:
