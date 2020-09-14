@@ -140,11 +140,6 @@ We're going to build a form that converts temperature. Open up `04-transform-the
 
 It should have radio buttons to pick either celsius or fahrenheit scale, and a number input to enter the temperature to be converted. Don't forget that inputs need labels! It should also show the converted temperature inside the `output` tag.
 
-   <details>
-   <summary>
-   Hint (you can click me)
-   </summary>
-
 Here are helper functions to do the temperature conversion:
 
 ```js
@@ -152,6 +147,13 @@ const celsiusToFahrenheit = (c) => Math.round((c * 9) / 5 + 32);
 const fahrenheitToCelsius = (f) => Math.round(((f - 32) * 5) / 9);
 ```
 
-   </details>
+<details>
+<summary>
+Hint (you can click me)
+</summary>
+
+You need to keep track of two state values: which scale the user picked and what temperature they typed. You can _derive_ the converted temperature from these two bits of state.
+
+</details>
 
 ![temp-converter](https://user-images.githubusercontent.com/9408641/58381233-927bbd80-7fb2-11e9-8ea5-fd35972da658.gif)
