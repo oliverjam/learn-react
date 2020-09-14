@@ -15,17 +15,20 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      const Toggle = props => {
-        const [toggled, setToggled] = React.useState(false);
+      function Toggle(props) {
+        const [open, setOpen] = React.useState(false);
+        const toggleOpen = () => setOpen(!open);
         return (
           <div>
-            <button onClick={() => setToggled(!toggled)}>Toggle</button>
-            {toggled && <div>{props.children}</div>}
+            <button onClick={toggleOpen}>Toggle</button>
+            {open ? <div>{props.children}</div> : null}
           </div>
         );
-      };
+      }
 
-      const App = () => <Toggle>Toggle me!</Toggle>;
+      function App() {
+        return <Toggle>This text is hidden until the button is clicked</Toggle>;
+      }
 
       ReactDOM.render(<App />, root);
     </script>

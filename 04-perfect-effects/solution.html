@@ -15,7 +15,7 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      const Toggle = props => {
+      function Toggle(props) {
         const [toggled, setToggled] = React.useState(false);
         React.useEffect(() => {
           document.title = toggled ? "On" : "Off";
@@ -26,13 +26,13 @@
             {toggled && <div>{props.children}</div>}
           </div>
         );
-      };
+      }
 
-      const MousePosition = props => {
+      function MousePosition(props) {
         const [x, setX] = React.useState(0);
         const [y, setY] = React.useState(0);
         React.useEffect(() => {
-          const handleMouseMove = event => {
+          const handleMouseMove = (event) => {
             setX(event.x);
             setY(event.y);
           };
@@ -44,13 +44,15 @@
             {x}:{y}
           </pre>
         );
-      };
+      }
 
-      const App = () => (
-        <Toggle>
-          <MousePosition />
-        </Toggle>
-      );
+      function App() {
+        return (
+          <Toggle>
+            <MousePosition />
+          </Toggle>
+        );
+      }
 
       ReactDOM.render(<App />, root);
     </script>
