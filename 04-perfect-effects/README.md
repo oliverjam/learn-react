@@ -107,7 +107,7 @@ The arrow function we return will be called if the component unmounts (is remove
 
 ## Workshop Part 3
 
-We're going to enhance our `Toggle` component from Part 3. You can either keep working in the same file or open up `index.3.html` to start fresh.
+We're going to enhance our `Toggle` component from Part 3. You can either keep working in the same file or open up `04-perfect-effects/challenge.html` to start fresh.
 
 1. Edit the Toggle component so that the page title (in the tab) shows whether the toggle is on or off.
 
